@@ -7,6 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.kiko.tavola.ui.screens.allrecipes.AllRecipesScreen
 import com.kiko.tavola.ui.screens.categories.CategoriesScreen
 import com.kiko.tavola.ui.screens.home.HomeScreen
 import com.kiko.tavola.ui.screens.recipedetail.RecipeDetailScreen
@@ -31,6 +32,9 @@ fun TavolaNavigation(
                 onCategoryClick = {
                     navController.navigate(TavolaRoutes.CATEGORIES)
                 },
+                onViewAllRecipes = {
+                    navController.navigate(TavolaRoutes.ALL_RECIPES)
+                },
                 useDynamicColor = useDynamicColor,
                 onUseDynamicColorChange = onUseDynamicColorChange
             )
@@ -41,6 +45,17 @@ fun TavolaNavigation(
                 onCategoryClick = { categoryId ->
                     // TODO: Навигация к рецептам категории
                 },
+                useDynamicColor = useDynamicColor,
+                onUseDynamicColorChange = onUseDynamicColorChange
+            )
+        }
+
+        composable(TavolaRoutes.ALL_RECIPES) {
+            AllRecipesScreen(
+                onRecipeClick = { recipeId ->
+                    navController.navigate(TavolaRoutes.recipeDetail(recipeId))
+                },
+                onBack = { navController.popBackStack() },
                 useDynamicColor = useDynamicColor,
                 onUseDynamicColorChange = onUseDynamicColorChange
             )

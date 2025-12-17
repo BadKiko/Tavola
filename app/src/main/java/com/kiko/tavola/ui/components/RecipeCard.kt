@@ -53,7 +53,7 @@ fun RecipeCard(
         Column {
             Box {
                 RecipeImage(
-                    imageUrl = recipe.imageUrl,
+                    imagePath = recipe.imagePath,
                     contentDescription = recipe.title,
                     modifier = Modifier
                         .fillMaxWidth()

@@ -45,6 +45,7 @@ import kotlinx.coroutines.launch
 fun HomeScreen(
     onRecipeClick: (String) -> Unit,
     onCategoryClick: () -> Unit,
+    onViewAllRecipes: () -> Unit,
     useDynamicColor: Boolean,
     onUseDynamicColorChange: (Boolean) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
@@ -169,24 +170,22 @@ fun HomeScreen(
                             }
                         }
                         
-                        // Все рецепты
+                        // Кнопка "Посмотреть все рецепты"
                         if (uiState.recipes.isNotEmpty()) {
                             item {
-                                Text(
-                                    text = "Все рецепты",
-                                    style = MaterialTheme.typography.headlineSmall,
-                                    modifier = Modifier.padding(bottom = 8.dp)
-                                )
-                            }
-                            items(
-                                items = uiState.recipes,
-                                key = { it.id }
-                            ) { recipe ->
-                                RecipeCard(
-                                    recipe = recipe,
-                                    onClick = { onRecipeClick(recipe.id) },
-                                    modifier = Modifier.padding(bottom = 16.dp)
-                                )
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        text = "Все рецепты",
+                                        style = MaterialTheme.typography.headlineSmall
+                                    )
+                                    FilledTonalButton(onClick = onViewAllRecipes) {
+                                        Text("Посмотреть все")
+                                    }
+                                }
                             }
                         }
                     }

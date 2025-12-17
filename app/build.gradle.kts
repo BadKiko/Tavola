@@ -71,7 +71,12 @@ dependencies {
     // Coil для изображений
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
-    
+
+    // Retrofit для API
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.okhttp.logging)
+
     // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

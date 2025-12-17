@@ -115,7 +115,7 @@ fun RecipeDetailScreen(
                                     val url = recipe.imageUrls[index]
                                     RecipeImage(
                                         imageUrl = url,
-                                        contentDescription = recipe.title,
+                                        contentDescription = "${recipe.title} - фото ${index + 1}",
                                         modifier = Modifier
                                             .width(280.dp)
                                             .height(320.dp)
@@ -125,7 +125,7 @@ fun RecipeDetailScreen(
                                 }
                             } else {
                                 RecipeImage(
-                                    imageUrl = recipe.imageUrl,
+                                    imagePath = recipe.imagePath,
                                     contentDescription = recipe.title,
                                     modifier = Modifier
                                         .fillMaxWidth()

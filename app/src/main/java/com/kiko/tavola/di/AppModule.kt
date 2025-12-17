@@ -1,17 +1,24 @@
 package com.kiko.tavola.di
 
+import com.kiko.tavola.data.remote.FoodApiService
+import com.kiko.tavola.data.remote.RetrofitClient
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 /**
  * Модуль для предоставления общих зависимостей приложения
- * В будущем здесь можно добавить предоставление OkHttp, Retrofit и других зависимостей
  */
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    // Здесь можно добавить @Provides методы для общих зависимостей
-    // Например, OkHttpClient, Retrofit и т.д.
+
+    @Provides
+    @Singleton
+    fun provideFoodApiService(): FoodApiService {
+        return RetrofitClient.foodApiService
+    }
 }
 

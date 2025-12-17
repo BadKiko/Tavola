@@ -14,7 +14,32 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import com.kiko.tavola.data.ImageUtils
 
+
+@Composable
+fun RecipeImage(
+    imagePath: String,
+    contentDescription: String?,
+    modifier: Modifier = Modifier,
+    contentScale: ContentScale = ContentScale.Crop
+) {
+    val context = LocalContext.current
+    val imageUrl = ImageUtils.buildImageUrl(imagePath)
+
+    AsyncImage(
+        model = ImageRequest.Builder(context)
+            .data(imageUrl)
+            .crossfade(true)
+            .build(),
+        contentDescription = contentDescription,
+        placeholder = rememberVectorPainter(Icons.Outlined.Image),
+        error = rememberVectorPainter(Icons.Outlined.BrokenImage),
+        modifier = modifier
+            .clip(RoundedCornerShape(16.dp)),
+        contentScale = contentScale
+    )
+}
 
 @Composable
 fun RecipeImage(
@@ -24,10 +49,10 @@ fun RecipeImage(
     contentScale: ContentScale = ContentScale.Crop
 ) {
     val context = LocalContext.current
+
     AsyncImage(
         model = ImageRequest.Builder(context)
-            // Всегда используем одно и то же изображение для всего UI
-            .data("https://icdn.lenta.ru/images/2024/06/28/12/20240628123130464/wide_16_9_3e207633180b39e720c3f4c4fd23364e.jpg")
+            .data(imageUrl)
             .crossfade(true)
             .build(),
         contentDescription = contentDescription,
